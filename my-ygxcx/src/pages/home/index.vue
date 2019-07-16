@@ -20,62 +20,26 @@
     <!-- 中部导航 -->
     <div class="nav_zbtab">
       <ul>
-        <li>
+        <li v-for="(item,index) in navList" :key="index">
           <a href="#">
-            <img
-              src="//img.alicdn.com/bao/uploaded/i3/TB17fLDFVXXXXbAXXXXXXXXXXXX_!!0-item_pic.jpg_180x180q90.jpg_.webp"
-            />
-            <p>首页</p>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img
-              src="//img.alicdn.com/bao/uploaded/i3/TB17fLDFVXXXXbAXXXXXXXXXXXX_!!0-item_pic.jpg_180x180q90.jpg_.webp"
-            />
-            <p>分类</p>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img
-              src="//img.alicdn.com/bao/uploaded/i3/TB17fLDFVXXXXbAXXXXXXXXXXXX_!!0-item_pic.jpg_180x180q90.jpg_.webp"
-            />
-            <p>购物车</p>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img
-              src="//img.alicdn.com/bao/uploaded/i3/TB17fLDFVXXXXbAXXXXXXXXXXXX_!!0-item_pic.jpg_180x180q90.jpg_.webp"
-            />
-            <p>我</p>
+            <img :src="item.image_src" />
+            <p>{{item.name}}</p>
           </a>
         </li>
       </ul>
     </div>
 
-    <!-- banner -->
-    <div class="banner_1">
-      <img src="https://aecpm.alicdn.com/simba/img/TB1X6uHLVXXXXcCXVXXSutbFXXX.jpg" />
-    </div>
-
-    <!-- 时尚女装 -->
-    <div class="boxNnrcl">
-      <div class="boxNnrcl_dc">
-        <img src="https://aecpm.alicdn.com/simba/img/TB1X6uHLVXXXXcCXVXXSutbFXXX.jpg" />
+    <div class="nrlb_box" v-for="(item,index) in nrclList" :key="index">
+      <!-- banner -->
+      <div class="banner_1">
+        <img :src="item.floor_title.image_src" />
+        <span>{{item.floor_title.name}}</span>
       </div>
-      <div class="boxNnrcl_dc">
-        <img src="https://aecpm.alicdn.com/simba/img/TB1X6uHLVXXXXcCXVXXSutbFXXX.jpg" />
-      </div>
-      <div class="boxNnrcl_dc">
-        <img src="https://aecpm.alicdn.com/simba/img/TB1X6uHLVXXXXcCXVXXSutbFXXX.jpg" />
-      </div>
-      <div class="boxNnrcl_dc">
-        <img src="https://aecpm.alicdn.com/simba/img/TB1X6uHLVXXXXcCXVXXSutbFXXX.jpg" />
-      </div>
-      <div class="boxNnrcl_dc">
-        <img src="https://aecpm.alicdn.com/simba/img/TB1X6uHLVXXXXcCXVXXSutbFXXX.jpg" />
+      <!-- 时尚女装 -->
+      <div class="boxNnrcl">
+        <div class="boxNnrcl_dc"  v-for="(item2,index2) in item.product_list" :key="index2">
+          <img :src="item2.image_src" />
+        </div>
       </div>
     </div>
   </div>
@@ -87,14 +51,18 @@ export default {
   data() {
     return {
       //轮播图数据源
-      lubList: []
+      lubList: [],
+      //获取分类列表
+      navList: [],
+      //内容列表
+      nrclList: []
     };
   },
   methods: {
     //轮播图接口
     async lunbFun() {
       let res = await wxrequest({
-        url: "home/swiperdata",
+        url: "api/public/v1/home/swiperdata",
         header: {
           "content-type": "json" // 默认值
         }
@@ -103,10 +71,39 @@ export default {
       if (meta.status === 200) {
         this.lubList = message;
       }
+    },
+    //获取分类列表
+    async zbDh() {
+      let res = await wxrequest({
+        url: "api/public/v1/home/catitems",
+        header: {
+          "content-type": "json" // 默认值
+        }
+      });
+      let { message, meta } = res;
+      if (meta.status === 200) {
+        this.navList = message;
+      }
+    },
+    //内容列表
+    async nrLbFun() {
+      let res = await wxrequest({
+        url: "api/public/v1/home/floordata",
+        header: {
+          "content-type": "json" // 默认值
+        }
+      });
+      let { message, meta } = res;
+      if (meta.status === 200) {
+        this.nrclList = message;
+        console.log(this.nrclList);
+      }
     }
   },
-  created() {
+  mounted() {
     this.lunbFun();
+    this.zbDh();
+    this.nrLbFun();
   }
 };
 </script>
@@ -169,14 +166,14 @@ export default {
       a {
         width: 25%;
         display: block;
-        width: 120rpx;
+        width: 80rpx;
         margin-left: 50%;
         margin-top: 50%;
         overflow: hidden;
         transform: translate(-50%, -50%);
         img {
-          width: 120rpx;
-          height: 120rpx;
+          width: 80rpx;
+          height: 80rpx;
         }
         p {
           font-size: 12px;
@@ -189,32 +186,41 @@ export default {
 .banner_1 {
   width: 100%;
   height: 88rpx;
+  position: relative;
   img {
     width: 100%;
     height: 100%;
   }
+  span {
+    position: absolute;
+    top: 50%;
+    left: 30rpx;
+    transform: translate(0, -50%);
+  }
 }
 
 // 列表
-.boxNnrcl {
-  overflow: hidden;
-  box-sizing: border-box;
-  padding: 18rpx;
-  .boxNnrcl_dc {
-    float: left;
-    width: 233rpx;
-    height: 186rpx;
-    margin-bottom: 10rpx;
-    img {
-      width: 100%;
-      height: 100%;
-    }
-    &:nth-child(2n) {
-      margin-right: 10rpx;
-    }
-    &:first-child {
-      height: 382rpx;
-      margin-right: 10rpx;
+.nrlb_box {
+  .boxNnrcl {
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 18rpx;
+    .boxNnrcl_dc {
+      float: left;
+      width: 233rpx;
+      height: 186rpx;
+      margin-bottom: 10rpx;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      &:nth-child(2n) {
+        margin-right: 10rpx;
+      }
+      &:first-child {
+        height: 382rpx;
+        margin-right: 10rpx;
+      }
     }
   }
 }

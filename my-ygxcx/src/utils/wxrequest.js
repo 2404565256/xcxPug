@@ -1,7 +1,7 @@
 
 export default function (options) {
     if (!options.baseUrl) {
-        options.baseUrl = "https://autumnfish.cn/wx/api/public/v1/"
+        options.baseUrl = "https://autumnfish.cn/wx/"
     }
     return new Promise((resolve, reject) => {
         wx.request({

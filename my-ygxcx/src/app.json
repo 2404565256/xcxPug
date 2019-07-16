@@ -3,7 +3,8 @@
     "pages/home/main",
     "pages/cation/main",
     "pages/cart/main",
-    "pages/me/main"
+    "pages/me/main",
+    "pages/searchNcc/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
