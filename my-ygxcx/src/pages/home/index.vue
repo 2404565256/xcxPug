@@ -2,7 +2,7 @@
   <div>
     <!-- search 头部 -->
     <div class="top_hoder">
-      <input type="search" />
+      <input @click="tosearch" type="search" />
       <div class="search_wz">
         <icon type="search" size="14" color="#bbbbbb" />
         <p>搜索</p>
@@ -37,7 +37,7 @@
       </div>
       <!-- 时尚女装 -->
       <div class="boxNnrcl">
-        <div class="boxNnrcl_dc"  v-for="(item2,index2) in item.product_list" :key="index2">
+        <div class="boxNnrcl_dc" v-for="(item2,index2) in item.product_list" :key="index2">
           <img :src="item2.image_src" />
         </div>
       </div>
@@ -98,6 +98,11 @@ export default {
         this.nrclList = message;
         console.log(this.nrclList);
       }
+    },
+    tosearch() {
+      wx.navigateTo({
+        url: "/pages/search/main"
+      });
     }
   },
   mounted() {

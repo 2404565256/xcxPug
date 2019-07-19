@@ -34,12 +34,26 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 2,
 			"list": [
 				{
 					"id": 0,
 					"name": "分类",
-					"pathName": "pages/searchNcc/main",
+					"pathName": "pages/cation/main",
+					"query": "query=",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "详情页",
+					"pathName": "pages/detail/main",
+					"query": "id=926",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "搜索",
+					"pathName": "pages/search/main",
 					"query": "query=",
 					"scene": null
 				}

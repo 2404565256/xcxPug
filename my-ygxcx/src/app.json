@@ -4,7 +4,9 @@
     "pages/cation/main",
     "pages/cart/main",
     "pages/me/main",
-    "pages/searchNcc/main"
+    "pages/searchNcc/main",
+    "pages/detail/main",
+    "pages/search/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

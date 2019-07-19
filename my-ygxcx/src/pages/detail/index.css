@@ -1,0 +1,124 @@
+.big-box {
+  padding-bottom: 100rpx;
+}
+.big-box .lunbo {
+  width: 100%;
+  height: 720rpx;
+}
+.big-box .lunbo image {
+  width: 100%;
+  height: 720rpx;
+}
+.big-box .msg {
+  width: 100%;
+  height: 300rpx;
+  padding: 0 15rpx;
+  box-sizing: border-box;
+  border-bottom: 20rpx solid #f4f4f4;
+}
+.big-box .msg .price {
+  font-size: 24px;
+  margin: 40rpx 0;
+  color: #eb4450;
+}
+.big-box .msg .word {
+  display: flex;
+}
+.big-box .msg .word .left {
+  flex: 1;
+  margin-right: 30rpx;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.big-box .msg .word .right {
+  width: 140rpx;
+  height: 80rpx;
+  text-align: center;
+  border-left: 1px solid #aaa;
+  position: relative;
+}
+.big-box .msg .word .right button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 140rpx;
+  height: 80rpx;
+  opacity: 0;
+}
+.big-box .msg .send {
+  color: #999;
+  margin-top: 40rpx;
+  font-size: 14px;
+}
+.big-box .cuxiao {
+  width: 100%;
+  height: 200rpx;
+  border-bottom: 20rpx solid #f4f4f4;
+  padding: 0 15rpx;
+  box-sizing: border-box;
+}
+.big-box .cuxiao .item span {
+  margin-left: 40rpx;
+  line-height: 100rpx;
+}
+.big-box .cuxiao .item span.color {
+  color: #ff419f;
+}
+.big-box .jshao {
+  width: 100%;
+  height: 100rpx;
+  padding: 0 10rpx;
+  display: flex;
+  text-align: center;
+  line-height: 100rpx;
+}
+.big-box .jshao .item {
+  flex: 1;
+}
+.big-box .jshao .item.active {
+  border-bottom: 10rpx solid #eb4450;
+  color: #eb4450;
+}
+.big-box .bottom {
+  width: 100%;
+  height: 96rpx;
+  display: flex;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  background-color: #fff;
+}
+.big-box .bottom .start {
+  flex: 2;
+  font-size: 14px;
+  text-align: center;
+  padding-top: 10rpx;
+  position: relative;
+}
+.big-box .bottom .start i {
+  font-size: 20px;
+}
+.big-box .bottom .start button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+.big-box .bottom .end {
+  font-size: 16px;
+  line-height: 96rpx;
+  border-radius: 0;
+  color: #fff;
+}
+.big-box .bottom .end.one {
+  background-color: #ffb400;
+}
+.big-box .bottom .end.tow {
+  background-color: #ff2d4a;
+}
